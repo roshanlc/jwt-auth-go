@@ -11,7 +11,7 @@ import (
 var SigningKey []byte
 
 func GenerateJWT(email, role string) (string, error) {
-	token := jwt.New(jwt.SigningMethodHS256)
+	token := jwt.New(jwt.SigningMethodHS512)
 	claims := token.Claims.(jwt.MapClaims)
 
 	claims["authorized"] = true

@@ -28,6 +28,7 @@ func main() {
 	// routes registration
 	router.Post("/login", handlers.LoginHandler)
 	router.Post("/register", handlers.RegistrationHandler)
+	router.Get("/home", handlers.IsAuthorized, handlers.HomeHandler)
 
 	// Run the router in separate goroutine
 	log.Fatal(router.Listen(":" + os.Getenv("PORT")))
