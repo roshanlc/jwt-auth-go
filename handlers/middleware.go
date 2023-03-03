@@ -8,6 +8,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/roshanlc/jwt-auth-go/utilities"
 )
 
 // IsAuthorized is a middleware for authorizatio
@@ -24,11 +25,10 @@ func IsAuthorized(c *fiber.Ctx) error {
 	}
 
 	token, err := jwt.Parse(tokens[1], func(token *jwt.Token) (interface{}, error) {
-		fmt.Println(token.Method.Alg())
-		if token.Method.Alg() != "HS512" {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("there was error while parsing")
 		}
-		return &token, nil
+		return utilities.SigningKey, nil
 	})
 
 	if err != nil {

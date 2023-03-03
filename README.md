@@ -1,4 +1,4 @@
-## A basic example of go with jwt authentication
+## A Basic JWT Based REST API Authentication
 
 - Uses Sqlite, go , fiber, gorm and jwt-go
 
